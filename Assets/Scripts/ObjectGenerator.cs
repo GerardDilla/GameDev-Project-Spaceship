@@ -16,6 +16,8 @@ public class ObjectGenerator : MonoBehaviour
     // public float platformWidthMax;
 
     public GameObject SpawnObject;
+
+    public int numberPooled = 10;
     public ObjectPooler objPooler;
     public float nextSpawn;
 
@@ -23,11 +25,16 @@ public class ObjectGenerator : MonoBehaviour
 
     public float spawnChance;
 
+    public bool randomRotation = false;
+
+    public Vector2 randomSize;
+
     // Start is called before the first frame update
     void Start()
     {
         // platformWidth = platform.GetComponent<BoxCollider2D>().size.x;
         Camera = Camera.main;
+        objPooler.InstantiateObjects(SpawnObject, numberPooled);
 
     }
 
@@ -49,17 +56,20 @@ public class ObjectGenerator : MonoBehaviour
             // Randomizes position of spawn within camera dimensions
             var randomX = Random.Range(-cameraWidth, cameraWidth);
             var randomY = Random.Range(0, cameraHeight);
-            var randomIndex = Random.Range(0, 2);
 
-
-            // Debug.Log(randomIndex);
-            GameObject newObject = objPooler.GetPooledObject(randomIndex);
+            // Activates an object from a queue
+            GameObject newObject = objPooler.GetPooledObject(SpawnObject);
             transform.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
-            if (randomIndex == 0)
+            if (randomRotation == true)
             {
                 newObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
             }
 
+            if (randomSize != Vector2.zero)
+            {
+                newObject.transform.localScale = Vector2.one * Random.Range(randomSize.x, randomSize.y);
+
+            }
             newObject.transform.position = transform.position;
             newObject.SetActive(true);
             // Instantiate(newObject, transform.position, transform.rotation);

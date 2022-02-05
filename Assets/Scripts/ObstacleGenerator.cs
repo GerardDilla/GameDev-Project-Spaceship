@@ -6,7 +6,6 @@ public class ObstacleGenerator : MonoBehaviour
 {
 
     public Transform generationPoint;
-
     public Camera Camera;
 
     public float distanceBetween;
@@ -29,34 +28,34 @@ public class ObstacleGenerator : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
+    // // Update is called once per frame
+    // void LateUpdate()
+    // {
 
-        float cameraHeight = Camera.orthographicSize;
-        float cameraWidth = Camera.aspect * cameraHeight;
-        Debug.Log("halfHeight:" + cameraHeight + " halfWidth:" + cameraWidth);
+    //     float cameraHeight = Camera.orthographicSize;
+    //     float cameraWidth = Camera.aspect * cameraHeight;
+    //     Debug.Log("halfHeight:" + cameraHeight + " halfWidth:" + cameraWidth);
 
 
-        if (Time.time > nextSpawn)
-        {
-            nextSpawn = Time.time + spawnTime;
-            var randomX = Random.Range(-cameraWidth, cameraWidth);
-            var randomY = Random.Range(0, cameraHeight);
-            var randomIndex = Random.Range(0, 2);
-            // Debug.Log(randomIndex);
-            GameObject newObject = objPooler.GetPooledObject(randomIndex);
-            transform.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
-            if (randomIndex == 0)
-            {
-                newObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
-            }
+    //     if (Time.time > nextSpawn)
+    //     {
+    //         nextSpawn = Time.time + spawnTime;
+    //         var randomX = Random.Range(-cameraWidth, cameraWidth);
+    //         var randomY = Random.Range(0, cameraHeight);
+    //         var randomIndex = Random.Range(0, 2);
+    //         // Debug.Log(randomIndex);
+    //         GameObject newObject = objPooler.GetPooledObject(randomIndex);
+    //         transform.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
+    //         if (randomIndex == 0)
+    //         {
+    //             newObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
+    //         }
 
-            newObject.transform.position = transform.position;
-            newObject.SetActive(true);
-            // Instantiate(newObject, transform.position, transform.rotation);
-            // Debug.Log("spawned " + newObject + " - position:" + newObject.transform.position);
-        }
+    //         newObject.transform.position = transform.position;
+    //         newObject.SetActive(true);
+    //         // Instantiate(newObject, transform.position, transform.rotation);
+    //         // Debug.Log("spawned " + newObject + " - position:" + newObject.transform.position);
+    //     }
 
-    }
+    // }
 }
