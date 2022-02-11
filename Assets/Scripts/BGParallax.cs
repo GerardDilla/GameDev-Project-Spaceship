@@ -36,7 +36,7 @@ public class BGParallax : MonoBehaviour
         // transform.position += deltaMovement * parallaxEffect;
         transform.position += new Vector3(deltaMovement.x * parallaxMultiplier.x, deltaMovement.y * parallaxMultiplier.y);
         lastCameraPosition = cam.position;
-        Debug.Log(Mathf.Abs(cam.position.y - transform.position.y) + " >= " + textureUnitSizeY);
+        // Debug.Log(Mathf.Abs(cam.position.y - transform.position.y) + " >= " + textureUnitSizeY);
         if (Mathf.Abs(cam.position.y - transform.position.y) >= textureUnitSizeY)
         {
             if (enableFollow == true)

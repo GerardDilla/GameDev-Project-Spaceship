@@ -659,8 +659,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 18
-    angle: 25
+    type: 4
+    angle: 10.39
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -735,7 +735,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 997f53505c3c1a04e9b8c5e07be44922, type: 3}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4758,7 +4758,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4814,6 +4814,10 @@ PrefabInstance:
     - target: {fileID: 1238447381106619544, guid: 76325c13c2aef7847a22b7d3a6a0127f, type: 3}
       propertyPath: m_Name
       value: Meteor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1238447381106619544, guid: 76325c13c2aef7847a22b7d3a6a0127f, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 1238447381106619549, guid: 76325c13c2aef7847a22b7d3a6a0127f, type: 3}
       propertyPath: m_Constraints
@@ -4891,10 +4895,31 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1329317927
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2472486229689333676, guid: 76325c13c2aef7847a22b7d3a6a0127f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76325c13c2aef7847a22b7d3a6a0127f, type: 3}
+--- !u!1 &851575221407378141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1238447381106619544, guid: 76325c13c2aef7847a22b7d3a6a0127f, type: 3}
+  m_PrefabInstance: {fileID: 1945201486784732741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &851575221407378139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1238447381106619550, guid: 76325c13c2aef7847a22b7d3a6a0127f, type: 3}
   m_PrefabInstance: {fileID: 1945201486784732741}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7184545283427064614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851575221407378141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8500a2bd716022d439d34b73aa824e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageInflicted: 50
+  baseDamageOnSize: 0
+  gameManager: {fileID: 0}

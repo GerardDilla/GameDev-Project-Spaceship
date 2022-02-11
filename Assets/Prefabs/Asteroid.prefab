@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1238447381106619549}
   - component: {fileID: 1238447381106619548}
   - component: {fileID: 6167189412303513916}
+  - component: {fileID: 2472486229689333676}
   m_Layer: 0
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,3 +157,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectDestroyer: {fileID: 0}
+--- !u!114 &2472486229689333676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238447381106619544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8500a2bd716022d439d34b73aa824e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageInflicted: 20
+  baseDamageOnSize: 1
+  gameManager: {fileID: 0}
