@@ -10,6 +10,10 @@ public class Obstacle : MonoBehaviour
 
     public GameManager gameManager;
 
+    public GameObject destroyEffect;
+    private float collisionDamageTimer = 1.0f;
+    private float currentCollisionDamageTimer = 0.0f;
+
     // public float 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +28,55 @@ public class Obstacle : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        // Debug.Log(currentCollisionDamageTimer);
         var objectCollided = other.gameObject.GetComponent<ShipControl>();
         if (objectCollided != null)
         {
-
             gameManager.RegisterObstacleHit(gameObject, objectCollided);
-            // Debug.Log("damaged:" + damageInflicted);
+        }
+
+
+    }
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        Debug.Log(currentCollisionDamageTimer);
+        var objectCollided = other.gameObject.GetComponent<ShipControl>();
+
+        if (objectCollided != null)
+        {
+            if (currentCollisionDamageTimer >= collisionDamageTimer)
+            {
+                currentCollisionDamageTimer = 0.0f;
+            }
+            else
+            {
+                if (currentCollisionDamageTimer == 0.0f)
+                {
+                    gameManager.RegisterObstacleHit(gameObject, objectCollided);
+                }
+                currentCollisionDamageTimer = currentCollisionDamageTimer + 0.1f;
+            }
+        }
+
+
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        var objectCollided = other.gameObject.GetComponent<ShipControl>();
+        if (objectCollided != null)
+        {
+            currentCollisionDamageTimer = 0.0f;
+
         }
     }
+
+    public void DestroyObstacle()
+    {
+
+        GameObject explosion = Instantiate(destroyEffect, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+    }
+
 
 
 }

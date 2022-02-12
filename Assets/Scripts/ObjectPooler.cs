@@ -25,6 +25,7 @@ public class ObjectPooler : MonoBehaviour
         obj.SetActive(false);
         return obj;
 
+
     }
 
     public void InstantiateObjects(GameObject objectPool, int pooledAmount)

@@ -52,6 +52,11 @@ public class GameManager : MonoBehaviour
     public void RegisterObstacleHit(GameObject obstacle, ShipControl shipControl)
     {
 
+        //Reactive Color Changes
+        health.GetComponent<Image>().color = new Color(255, 0, 0, 100);
+        ship.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 100);
+        // ship.GetComponent<Rigidbody2D>().AddForceAtPosition(ship.transform.position * 10 - obstacle.transform.position, ship.transform.position + Vector3.down);
+
         StartCoroutine(RegisterObstacleHitCo(obstacle, shipControl));
 
     }
@@ -65,29 +70,25 @@ public class GameManager : MonoBehaviour
     public IEnumerator RegisterObstacleHitCo(GameObject obstacle, ShipControl shipControl)
     {
 
-
-        //Reactive Color Changes
-        health.GetComponent<Image>().color = new Color(255, 0, 0, 100);
-        ship.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 100);
-
         yield return new WaitForSeconds(0.1f);
 
         // Change Current Health
         shipControl.currentHealth -= obstacle.GetComponent<Obstacle>().damageInflicted;
+
         // UI Changes
         healthNumber.GetComponent<Text>().text = "" + (int)shipControl.currentHealth;
 
         //Reactive Color Changes
         ship.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
         health.GetComponent<Image>().color = new Color(255, 255, 255, 100);
-        // obstacle.SetActive(false);
+
     }
     public IEnumerator RestartGameCo()
     {
         ship.gameObject.SetActive(false);
-        shipControl.currentHealth = shipControl.health;
         healthNumber.GetComponent<Text>().text = "0";
         yield return new WaitForSeconds(0.5f);
+        shipControl.currentHealth = shipControl.health;
         healthNumber.GetComponent<Text>().text = "" + (int)shipControl.currentHealth;
         InactivateObjectPooled();
         shipTransformReset();

@@ -6,10 +6,20 @@ public class ObjectDestroyer : MonoBehaviour
 {
 
     public GameObject objectDestroyer;
+
+    public string customObjectDestroyer;
     // Start is called before the first frame update
     void Start()
     {
-        objectDestroyer = GameObject.Find("ObjectDeletePoint");
+        if (customObjectDestroyer != "")
+        {
+            objectDestroyer = GameObject.Find(customObjectDestroyer);
+        }
+        else
+        {
+            objectDestroyer = GameObject.Find("ObjectDeletePoint");
+        }
+
     }
 
     // Update is called once per frame
