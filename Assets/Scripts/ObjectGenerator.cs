@@ -18,6 +18,8 @@ public class ObjectGenerator : MonoBehaviour
 
 
     [Header("Pooling Config")]
+
+    public GameObject customParent;
     public float spawnTime = 2f;
     public float spawnChance = 1;
     public int numberPooled = 10;
@@ -26,6 +28,8 @@ public class ObjectGenerator : MonoBehaviour
     // public string customParentName;
     public bool randomRotation = false;
     public Vector2 randomSize;
+
+    public float spawngaps;
 
     private float nextSpawn;
     private float cameraHeight;
@@ -37,7 +41,7 @@ public class ObjectGenerator : MonoBehaviour
     {
         // platformWidth = platform.GetComponent<BoxCollider2D>().size.x;
         Camera = Camera.main;
-        objPooler.InstantiateObjects(SpawnObject, numberPooled);
+        objPooler.InstantiateObjects(SpawnObject, numberPooled, customParent);
 
 
     }
@@ -82,10 +86,11 @@ public class ObjectGenerator : MonoBehaviour
         if (maxActiveObjects != 0)
         {
 
+            // Prevents spawning when pooled reaches the maximum number of objects 
             int activeChild = CountActive();
             if (activeChild < maxActiveObjects)
             {
-                GameObject newObject = objPooler.GetPooledObject(SpawnObject);
+                GameObject newObject = objPooler.GetPooledObject(SpawnObject, customParent);
                 transform.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
                 if (randomRotation == true)
                 {
@@ -145,7 +150,16 @@ public class ObjectGenerator : MonoBehaviour
 
     private int CountActive()
     {
-        GameObject parent = GameObject.Find(SpawnObject.name + "_Parent");
+
+        GameObject parent = null;
+        if (customParent != null)
+        {
+            parent = customParent;
+        }
+        else
+        {
+            parent = GameObject.Find(SpawnObject.name + "_Parent");
+        }
         int childActiveCount = 0;
         for (int i = 0; i < parent.transform.childCount; i++)
         {

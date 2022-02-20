@@ -10147,9 +10147,9 @@ GameObject:
   - component: {fileID: 7454964791576080198}
   - component: {fileID: 7454964791576080195}
   - component: {fileID: 7454964791576080196}
-  - component: {fileID: 7454964791576080193}
   - component: {fileID: 7454964791576080192}
   - component: {fileID: 6582189039451845617}
+  - component: {fileID: 1965033014}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Player
@@ -10219,7 +10219,7 @@ SpriteRenderer:
   m_SortingLayerID: -1833089327
   m_SortingLayer: 11
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d6ea4a4722dc5ef4ebd87c7c8e1e2c11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4300fd00a9e4ef5438e947bb3199fc7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10278,57 +10278,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &7454964791576080193
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7454964791576080199}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.031327005, y: 0.11098339}
-      - {x: -0.03151378, y: 0.0919139}
-      - {x: -0.03975244, y: 0.090534374}
-      - {x: -0.039718132, y: 0.0118118}
-      - {x: -0.13083479, y: -0.05083783}
-      - {x: -0.13025129, y: -0.08074346}
-      - {x: -0.09233413, y: -0.08106337}
-      - {x: -0.09196948, y: -0.10052772}
-      - {x: -0.07081063, y: -0.100478135}
-      - {x: -0.060904305, y: -0.11770332}
-      - {x: -0.019167142, y: -0.11683958}
-      - {x: -0.009096905, y: -0.097089715}
-      - {x: 0.012465429, y: -0.097954266}
-      - {x: 0.02078536, y: -0.11783035}
-      - {x: 0.06460062, y: -0.11783035}
-      - {x: 0.06873761, y: -0.09756386}
-      - {x: 0.09231311, y: -0.098711014}
-      - {x: 0.095120676, y: -0.080632724}
-      - {x: 0.13077283, y: -0.08025307}
-      - {x: 0.13090165, y: -0.050782416}
-      - {x: 0.042415597, y: 0.010959517}
-      - {x: 0.04165435, y: 0.0915741}
-      - {x: 0.03135422, y: 0.092336446}
-      - {x: 0.030977223, y: 0.111173116}
-      - {x: 0.01094053, y: 0.14249484}
-      - {x: -0.008708378, y: 0.14277081}
 --- !u!114 &7454964791576080192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10394,6 +10343,45 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1965033014
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7454964791576080199}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.010739289, y: 0.10957498}
+      - {x: -0.030108467, y: 0.058914233}
+      - {x: -0.031120915, y: 0.00938236}
+      - {x: -0.13942772, y: -0.022218144}
+      - {x: -0.13778193, y: -0.06992893}
+      - {x: -0.028536668, y: -0.069879875}
+      - {x: -0.030153371, y: -0.12130144}
+      - {x: 0.029258708, y: -0.120442994}
+      - {x: 0.029092748, y: -0.070569694}
+      - {x: 0.13872302, y: -0.06744591}
+      - {x: 0.13984285, y: -0.017917618}
+      - {x: 0.031552684, y: 0.011470892}
+      - {x: 0.029978525, y: 0.059066698}
+      - {x: 0.008774399, y: 0.11018981}
 --- !u!1001 &7454964790328843615
 PrefabInstance:
   m_ObjectHideFlags: 0

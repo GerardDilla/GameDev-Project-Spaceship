@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private Transform healthNumber;
     public Text scoreUI;
     public Text highScoreUI;
+
+    public Text gameOver;
     public PointTracker pointTracker;
     public float highScore = 0;
     public Vector3 shipStart;
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
         shipStart = ship.transform.position;
         shipControl = ship.GetComponent<ShipControl>();
         healthNumber = health.transform.Find("Number");
+        gameOver.gameObject.SetActive(false);
         if (PlayerPrefs.HasKey("HighScore"))
         {
             highScore = PlayerPrefs.GetFloat("HighScore");
@@ -33,6 +36,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("has no key");
         }
+    }
+
+    public void GameOver()
+    {
+        ship.gameObject.SetActive(false);
+        healthNumber.GetComponent<Text>().text = "0";
+        gameOver.gameObject.SetActive(true);
+
     }
     public void RestartGame()
     {
@@ -44,7 +55,8 @@ public class GameManager : MonoBehaviour
     {
         ship.gameObject.SetActive(false);
         healthNumber.GetComponent<Text>().text = "0";
-        yield return new WaitForSeconds(3f);
+        gameOver.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
         InactivateObjectPooled();
         shipTransformReset();
         ResetTallyScore();
@@ -62,6 +74,16 @@ public class GameManager : MonoBehaviour
             foreach (GameObject obstacle in obstacles)
             {
                 obstacle.SetActive(false);
+            }
+
+        }
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length != 0)
+        {
+            foreach (GameObject enemy in enemies)
+            {
+                enemy.SetActive(false);
             }
 
         }
@@ -84,7 +106,6 @@ public class GameManager : MonoBehaviour
 
     public void TallyScore(float points)
     {
-
         if (points > highScore)
         {
             highScore = points;

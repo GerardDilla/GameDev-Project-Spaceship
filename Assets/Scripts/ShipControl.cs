@@ -145,7 +145,8 @@ public class ShipControl : MonoBehaviour
         if (currentHealth <= 0)
         {
             DestroyShip();
-            gameManager.RestartGame();
+            gameManager.GameOver();
+            // gameManager.RestartGame();
         }
 
     }

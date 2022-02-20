@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
 
     public float Health;
 
+    public float speed = 5f;
+
     [SerializeField]
     private float currentHealth;
     public GameManager gameManager;
@@ -20,10 +22,14 @@ public class Enemy : MonoBehaviour
     public GameObject hitEffect;
 
     public Collider2D enemyCollider;
+
+    public GameObject enemyArea;
     private float collisionDamageTimer = 1.0f;
     private float currentCollisionDamageTimer = 0.0f;
 
     public bool canBeKnockedBack = false;
+
+    public bool inPosition = false;
 
     bool firstHit = false;
 
@@ -31,11 +37,10 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         objectPooler = gameManager.GetComponent<ObjectPooler>();
         objectPooler.InstantiateObjects(destroyEffect, 0);
+        enemyArea = GameObject.Find("EnemyArea");
 
     }
 
@@ -45,6 +50,17 @@ public class Enemy : MonoBehaviour
         Debug.Log(currentHealth);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
     }
+
+    private void LateUpdate()
+    {
+        // var positionDifference = enemyArea.transform.position - transform.position;
+        // transform.position = new Vector3(0.0f, 0.0f, transform.position.z) * Time.deltaTime;
+        float step = speed * Time.deltaTime;
+        Vector3 randomPosition = new Vector3(transform.position.x, enemyArea.transform.position.y, enemyArea.transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, randomPosition, step);
+    }
+
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Obstacle")
