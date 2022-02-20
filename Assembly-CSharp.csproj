@@ -38,9 +38,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\PlatformDestroyer.cs" />
      <Compile Include="Assets\Scripts\ObjectGenerator.cs" />
+     <Compile Include="Assets\Scripts\WeaponManager.cs" />
      <Compile Include="Assets\Scripts\ObstacleGenerator.cs" />
      <Compile Include="Assets\Scripts\ShipControl.cs" />
-     <Compile Include="Assets\Scripts\ParticleCollision.cs" />
+     <Compile Include="Assets\Scripts\ParticleGenerator.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\ObjectDestroyer.cs" />
@@ -49,10 +50,12 @@
      <Compile Include="Assets\Scripts\ObjectPooler.cs" />
      <Compile Include="Assets\Scripts\PlatformGenerator.cs" />
      <Compile Include="Assets\UI pack\Scripts\FillValueNumber.cs" />
+     <Compile Include="Assets\Scripts\ParticleDeactivator.cs" />
      <Compile Include="Assets\Scripts\CameraBoundaries.cs" />
      <Compile Include="Assets\Scripts\Obstacle.cs" />
      <Compile Include="Assets\Scripts\BGParallax.cs" />
-     <Compile Include="Assets\Scripts\ParticleGenerator.cs" />
+     <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\AttachGameObjectsToParticles.cs" />
      <None Include="Assets\UI pack\Documentation.txt" />
      <None Include="Assets\Galaxia Sprite Pack #1\README.txt" />
     <Reference Include="UnityEngine">

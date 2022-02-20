@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - obstacle
-  - prop
+  - Obstacle
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Obstacle
-  - 
+  - PostProcessing
   - 
   - 
   - 
@@ -61,8 +61,14 @@ TagManager:
   - name: Enemies
     uniqueID: 1871623177
     locked: 0
+  - name: Obstacle Particle
+    uniqueID: 1032098701
+    locked: 0
   - name: Obstacles
     uniqueID: 1329317927
+    locked: 0
+  - name: Meteor
+    uniqueID: 3881292251
     locked: 0
   - name: Particles
     uniqueID: 1231434261

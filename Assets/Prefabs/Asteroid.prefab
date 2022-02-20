@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 2472486229689333676}
   - component: {fileID: -1900426610079115783}
   - component: {fileID: 6201014401112823458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Asteroid
-  m_TagString: obstacle
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1329317927
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: bfd6d70049843b44c9781eeea634f661, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -177,6 +177,8 @@ MonoBehaviour:
   baseDamageOnSize: 0
   gameManager: {fileID: 0}
   destroyEffect: {fileID: 8672960274861524399, guid: e4f4e9991cd6bbc40aaba4d8b51eab48, type: 3}
+  hitEffect: {fileID: 8672960274861524399, guid: e4f4e9991cd6bbc40aaba4d8b51eab48, type: 3}
+  canBeKnockedBack: 1
 --- !u!331 &-1900426610079115783
 SpriteMask:
   m_ObjectHideFlags: 0

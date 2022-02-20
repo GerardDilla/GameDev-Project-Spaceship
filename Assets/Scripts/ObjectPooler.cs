@@ -30,17 +30,25 @@ public class ObjectPooler : MonoBehaviour
 
     public void InstantiateObjects(GameObject objectPool, int pooledAmount)
     {
-        var heirarchyCategory = new GameObject(objectPool.name + "_Parent");
-        if (GameObject.Find(heirarchyCategory.name) == null)
+        string heirarchyCategoryName = objectPool.name + "_Parent";
+
+        if (GameObject.Find(heirarchyCategoryName) == null)
         {
-            Instantiate(heirarchyCategory);
+            // Debug.Log(GameObject.Find(heirarchyCategoryName));
+            GameObject heirarchyCategory = new GameObject(heirarchyCategoryName);
+
+            // Instantiate(new GameObject(heirarchyCategoryName));
+
         }
         for (int i = 0; i < pooledAmount; i++)
         {
             GameObject obj = (GameObject)Instantiate(objectPool);
-            obj.transform.parent = heirarchyCategory.transform;
+            obj.transform.parent = GameObject.Find(heirarchyCategoryName).transform;
             obj.SetActive(false);
         }
+
+
+
     }
 
 }

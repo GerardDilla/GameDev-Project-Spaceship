@@ -13,7 +13,7 @@ public class ObjectFollower : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         transform.position = objectToFollow.transform.position;
     }

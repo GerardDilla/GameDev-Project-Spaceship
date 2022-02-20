@@ -18,12 +18,12 @@ public class ParticleGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        objectPooler.InstantiateObjects(particle, numberPooled);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void PlayParticle(GameObject particleObject, Transform location)
     {
-
+        GameObject particle = objectPooler.GetPooledObject(particleObject);
+        particle.transform.position = location.position;
+        particle.SetActive(true);
     }
 }

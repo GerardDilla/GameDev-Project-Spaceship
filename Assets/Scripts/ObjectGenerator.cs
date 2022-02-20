@@ -57,13 +57,7 @@ public class ObjectGenerator : MonoBehaviour
             float randomizer = Random.Range(0.0f, 1.0f);
             if (Random.value <= spawnChance)
             {
-                if (SpawnObject.name == "Meteor")
-                {
-                    Debug.Log("spawned:" + "-" + SpawnObject.name + ":" + randomizer + ":" + spawnChance);
-                }
-
                 SpawnPoolObject();
-
             }
             else
             {
@@ -95,7 +89,16 @@ public class ObjectGenerator : MonoBehaviour
                 transform.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
                 if (randomRotation == true)
                 {
-                    newObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
+                    if (newObject.GetComponent<SpriteRenderer>() != null)
+                    {
+                        newObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
+                    }
+                    else
+                    {
+                        // newObject.transform.GetChild(2).rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
+                        newObject.transform.Find("SpriteMask").rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
+                    }
+
                 }
 
                 if (randomSize != Vector2.zero)

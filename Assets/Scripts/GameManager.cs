@@ -18,19 +18,15 @@ public class GameManager : MonoBehaviour
     public float highScore = 0;
     public Vector3 shipStart;
 
-
-
-
-
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         shipStart = ship.transform.position;
         shipControl = ship.GetComponent<ShipControl>();
         healthNumber = health.transform.Find("Number");
         if (PlayerPrefs.HasKey("HighScore"))
         {
-            Debug.Log("has key");
             highScore = PlayerPrefs.GetFloat("HighScore");
         }
         else
@@ -38,68 +34,29 @@ public class GameManager : MonoBehaviour
             Debug.Log("has no key");
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (shipControl.currentHealth <= 0)
-        {
-            RestartGame();
-        }
-
-    }
-
-    public void RegisterObstacleHit(GameObject obstacle, ShipControl shipControl)
-    {
-
-        //Reactive Color Changes
-        health.GetComponent<Image>().color = new Color(255, 0, 0, 100);
-        ship.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 100);
-        // ship.GetComponent<Rigidbody2D>().AddForceAtPosition(ship.transform.position * 10 - obstacle.transform.position, ship.transform.position + Vector3.down);
-
-        StartCoroutine(RegisterObstacleHitCo(obstacle, shipControl));
-
-    }
     public void RestartGame()
     {
 
         StartCoroutine("RestartGameCo");
 
     }
-
-    public IEnumerator RegisterObstacleHitCo(GameObject obstacle, ShipControl shipControl)
-    {
-
-        yield return new WaitForSeconds(0.1f);
-
-        // Change Current Health
-        shipControl.currentHealth -= obstacle.GetComponent<Obstacle>().damageInflicted;
-
-        // UI Changes
-        healthNumber.GetComponent<Text>().text = "" + (int)shipControl.currentHealth;
-
-        //Reactive Color Changes
-        ship.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
-        health.GetComponent<Image>().color = new Color(255, 255, 255, 100);
-
-    }
     public IEnumerator RestartGameCo()
     {
         ship.gameObject.SetActive(false);
         healthNumber.GetComponent<Text>().text = "0";
-        yield return new WaitForSeconds(0.5f);
-        shipControl.currentHealth = shipControl.health;
-        healthNumber.GetComponent<Text>().text = "" + (int)shipControl.currentHealth;
+        yield return new WaitForSeconds(3f);
         InactivateObjectPooled();
         shipTransformReset();
         ResetTallyScore();
         Camera.CameraReset();
+        shipControl.currentHealth = shipControl.health;
+        healthNumber.GetComponent<Text>().text = "" + (int)shipControl.currentHealth;
         objectGenerator.SetActive(true);
     }
 
     private void InactivateObjectPooled()
     {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("obstacle");
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
         if (obstacles.Length != 0)
         {
             foreach (GameObject obstacle in obstacles)
@@ -108,14 +65,14 @@ public class GameManager : MonoBehaviour
             }
 
         }
-        if (obstacles.Length != 0)
-        {
-            GameObject[] prop = GameObject.FindGameObjectsWithTag("prop");
-            foreach (GameObject obstacle in obstacles)
-            {
-                obstacle.SetActive(false);
-            }
-        }
+        // if (obstacles.Length != 0)
+        // {
+        //     GameObject[] prop = GameObject.FindGameObjectsWithTag("prop");
+        //     foreach (GameObject obstacle in obstacles)
+        //     {
+        //         obstacle.SetActive(false);
+        //     }
+        // }
     }
 
     private void shipTransformReset()
