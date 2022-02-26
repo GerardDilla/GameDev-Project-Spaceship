@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
     public bool canBeKnockedBack = false;
 
     public bool inPosition = false;
-
     bool firstHit = false;
 
     // public float 
@@ -41,7 +40,7 @@ public class Enemy : MonoBehaviour
         objectPooler = gameManager.GetComponent<ObjectPooler>();
         objectPooler.InstantiateObjects(destroyEffect, 0);
         enemyArea = GameObject.Find("EnemyArea");
-
+        GetComponent<Animator>().Rebind();
     }
 
     private void Awake()
@@ -49,17 +48,8 @@ public class Enemy : MonoBehaviour
         currentHealth = Health;
         Debug.Log(currentHealth);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
-    }
 
-    private void LateUpdate()
-    {
-        // var positionDifference = enemyArea.transform.position - transform.position;
-        // transform.position = new Vector3(0.0f, 0.0f, transform.position.z) * Time.deltaTime;
-        float step = speed * Time.deltaTime;
-        Vector3 randomPosition = new Vector3(transform.position.x, enemyArea.transform.position.y, enemyArea.transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, randomPosition, step);
     }
-
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -164,7 +154,7 @@ public class Enemy : MonoBehaviour
     public void DestroyEnemy()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 100);
-        canBeKnockedBack = true;
+        // canBeKnockedBack = true;
         StartCoroutine(DestroyEnemyCo());
     }
 
@@ -178,8 +168,9 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
         canBeKnockedBack = false;
+        inPosition = false;
         currentHealth = Health;
-        gameObject.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
 
 

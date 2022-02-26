@@ -11,8 +11,11 @@ public class ShipControl : MonoBehaviour
     public float horizontalPush;
     public float health = 100;
     public float currentHealth;
-
     public bool destroyed = false;
+    public float fireRate = 2f;
+
+    [SerializeField]
+    private float fireRateTimer = 0f;
 
     // public float destroyedTime = 1.0f;
 
@@ -32,6 +35,8 @@ public class ShipControl : MonoBehaviour
     private Transform healthNumber;
     private GameManager gameManager;
     private ObjectPooler objectPooler;
+    private bool startLFireTimer = false;
+    private bool initialFire;
 
 
     // Start is called before the first frame update
@@ -47,7 +52,8 @@ public class ShipControl : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         objectPooler = gameManager.GetComponent<ObjectPooler>();
         objectPooler.InstantiateObjects(destroyEffect, 0);
-
+        fireRateTimer = fireRate;
+        initialFire = false;
     }
 
     void Awake()
@@ -86,10 +92,34 @@ public class ShipControl : MonoBehaviour
     }
     void LateUpdate()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetMouseButton(0))
         {
-            shipWeapon.Play();
+
+            if (startLFireTimer == false)
+            {
+                if (initialFire == true)
+                {
+                    shipWeapon.Play();
+                }
+                initialFire = true;
+                startLFireTimer = true;
+                Debug.Log("fire 2");
+
+            }
+
         }
+        if (startLFireTimer == true)
+        {
+            fireRateTimer = fireRateTimer + Time.deltaTime;
+            if (fireRateTimer >= fireRate)
+            {
+                startLFireTimer = false;
+                fireRateTimer = 0f;
+
+            }
+        }
+
 
     }
 

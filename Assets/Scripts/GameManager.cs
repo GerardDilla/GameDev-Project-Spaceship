@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         ship.gameObject.SetActive(false);
+        pointTracker.gameObject.SetActive(false);
         healthNumber.GetComponent<Text>().text = "0";
         gameOver.gameObject.SetActive(true);
 
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
         shipTransformReset();
         ResetTallyScore();
         Camera.CameraReset();
+        pointTracker.gameObject.SetActive(true);
         shipControl.currentHealth = shipControl.health;
         healthNumber.GetComponent<Text>().text = "" + (int)shipControl.currentHealth;
         objectGenerator.SetActive(true);
@@ -83,7 +85,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (GameObject enemy in enemies)
             {
-                enemy.SetActive(false);
+                enemy.transform.parent.gameObject.SetActive(false);
             }
 
         }
