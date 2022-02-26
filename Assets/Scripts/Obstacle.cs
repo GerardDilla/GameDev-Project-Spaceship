@@ -20,6 +20,8 @@ public class Obstacle : MonoBehaviour
 
     public bool canBeKnockedBack = false;
 
+    public bool ignoreEnemies = true;
+
     bool firstHit = false;
 
     // public float 
@@ -41,53 +43,71 @@ public class Obstacle : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-
-        if (firstHit == false)
+        if (other.gameObject.tag == "Player")
         {
-            // Debug.Log(currentCollisionDamageTimer);
-            var ship = other.gameObject.GetComponent<ShipControl>();
-            if (ship != null)
+            if (firstHit == false)
             {
-                ship.RegisterObstacleHit(gameObject);
+                // Debug.Log(currentCollisionDamageTimer);
+                var ship = other.gameObject.GetComponent<ShipControl>();
+                if (ship != null)
+                {
+                    ship.RegisterObstacleHit(gameObject);
+                }
+                firstHit = true;
             }
-            firstHit = true;
+
         }
+        if (other.gameObject.tag == "Enemy")
+        {
+            // Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
+        }
+
+
 
 
     }
     private void OnCollisionStay2D(Collision2D other)
     {
         // Debug.Log(currentCollisionDamageTimer);
-        var ship = other.gameObject.GetComponent<ShipControl>();
-        if (firstHit == true)
+        if (other.gameObject.tag == "Player")
         {
-            if (ship != null)
+            var ship = other.gameObject.GetComponent<ShipControl>();
+            if (firstHit == true)
             {
-                if (currentCollisionDamageTimer >= collisionDamageTimer)
+                if (ship != null)
                 {
-                    currentCollisionDamageTimer = 0.0f;
-                }
-                else
-                {
-                    if (currentCollisionDamageTimer == 0.0f)
+                    if (currentCollisionDamageTimer >= collisionDamageTimer)
                     {
-                        ship.RegisterObstacleHit(gameObject);
+                        currentCollisionDamageTimer = 0.0f;
                     }
-                    currentCollisionDamageTimer = currentCollisionDamageTimer + 0.1f;
+                    else
+                    {
+                        if (currentCollisionDamageTimer == 0.0f)
+                        {
+                            ship.RegisterObstacleHit(gameObject);
+                        }
+                        currentCollisionDamageTimer = currentCollisionDamageTimer + 0.1f;
+                    }
                 }
+
             }
-
         }
-
+        if (other.gameObject.tag == "Enemy")
+        {
+            // Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
+        }
 
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        var ship = other.gameObject.GetComponent<ShipControl>();
-        if (ship != null)
+        if (other.gameObject.tag == "Player")
         {
-            currentCollisionDamageTimer = 0.0f;
+            var ship = other.gameObject.GetComponent<ShipControl>();
+            if (ship != null)
+            {
+                currentCollisionDamageTimer = 0.0f;
 
+            }
         }
     }
 

@@ -36,13 +36,15 @@ public class ObjectGenerator : MonoBehaviour
 
     private float cameraWidth;
 
+    private Vector3 generationPointOrigin;
+
     // Start is called before the first frame update
     void Start()
     {
         // platformWidth = platform.GetComponent<BoxCollider2D>().size.x;
         Camera = Camera.main;
         objPooler.InstantiateObjects(SpawnObject, numberPooled, customParent);
-
+        generationPointOrigin = generationPoint.localPosition;
 
     }
 
@@ -58,7 +60,6 @@ public class ObjectGenerator : MonoBehaviour
         //Checks spawn rate
         if (Time.time > nextSpawn)
         {
-            float randomizer = Random.Range(0.0f, 1.0f);
             if (Random.value <= spawnChance)
             {
                 SpawnPoolObject();
@@ -78,10 +79,8 @@ public class ObjectGenerator : MonoBehaviour
     {
         //Increments Spawn rate checker
         nextSpawn = Time.time + spawnTime;
-
         // Randomizes position of spawn within camera dimensions
         var randomX = Random.Range(-cameraWidth, cameraWidth);
-        var randomY = Random.Range(0, cameraHeight);
         // Activates an object from a queue
         if (maxActiveObjects != 0)
         {
@@ -91,7 +90,7 @@ public class ObjectGenerator : MonoBehaviour
             if (activeChild < maxActiveObjects)
             {
                 GameObject newObject = objPooler.GetPooledObject(SpawnObject, customParent);
-                transform.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
+                generationPoint.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
                 if (randomRotation == true)
                 {
                     if (newObject.GetComponent<SpriteRenderer>() != null)
@@ -116,7 +115,7 @@ public class ObjectGenerator : MonoBehaviour
                 {
                     newObject.GetComponent<SpriteRenderer>().sprite = SpriteVariants[Random.Range(0, SpriteVariants.Count)];
                 }
-                newObject.transform.position = transform.position;
+                newObject.transform.position = generationPoint.position;
                 newObject.SetActive(true);
 
             }
@@ -125,7 +124,7 @@ public class ObjectGenerator : MonoBehaviour
         else
         {
             GameObject newObject = objPooler.GetPooledObject(SpawnObject);
-            transform.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
+            generationPoint.position = new Vector3(randomX, generationPoint.position.y, newObject.transform.position.z);
             if (randomRotation == true)
             {
                 newObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
@@ -141,10 +140,11 @@ public class ObjectGenerator : MonoBehaviour
             {
                 newObject.GetComponent<SpriteRenderer>().sprite = SpriteVariants[Random.Range(0, SpriteVariants.Count)];
             }
-            newObject.transform.position = transform.position;
+            newObject.transform.position = generationPoint.position;
             newObject.SetActive(true);
         }
-
+        randomX = 0;
+        // generationPoint.localPosition = generationPointOrigin;
 
     }
 

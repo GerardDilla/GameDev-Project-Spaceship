@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float damage;
-    public float collisionDamage;
+    [Header("- Ship Attributes")]
 
     public float Health;
-
+    public float damage;
+    public float collisionDamage;
+    public float fireRate;
     public float speed = 5f;
-
-    [SerializeField]
     private float currentHealth;
+
+    [Header("- Object References")]
     public GameManager gameManager;
 
     private ObjectPooler objectPooler;
@@ -24,31 +25,26 @@ public class Enemy : MonoBehaviour
     public Collider2D enemyCollider;
 
     public GameObject enemyArea;
+
+    [Header("- Config")]
+    public bool canBeKnockedBack = false;
     private float collisionDamageTimer = 1.0f;
     private float currentCollisionDamageTimer = 0.0f;
-
-    public bool canBeKnockedBack = false;
-
-    public bool inPosition = false;
-    bool firstHit = false;
-
-    // public float 
-    // Start is called before the first frame update
-    void Start()
+    public bool inPosition;
+    private bool firstHit = false;
+    private void OnEnable()
     {
+        currentHealth = Health;
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         objectPooler = gameManager.GetComponent<ObjectPooler>();
         objectPooler.InstantiateObjects(destroyEffect, 0);
         enemyArea = GameObject.Find("EnemyArea");
         GetComponent<Animator>().Rebind();
-    }
-
-    private void Awake()
-    {
-        currentHealth = Health;
-        Debug.Log(currentHealth);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
-
+        if (fireRate == 0f)
+        {
+            fireRate = GetComponentInChildren<ParticleSystem>().main.duration;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -71,8 +67,6 @@ public class Enemy : MonoBehaviour
                 firstHit = true;
             }
         }
-
-
 
     }
     private void OnCollisionStay2D(Collision2D other)
@@ -122,7 +116,6 @@ public class Enemy : MonoBehaviour
     {
 
         //Reactive Color Changes
-        Debug.Log(damage);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 100);
         if (hitEffect != null)
         {
@@ -165,13 +158,11 @@ public class Enemy : MonoBehaviour
         objectDestroyParticle.transform.position = transform.position;
         objectDestroyParticle.SetActive(true);
         objectDestroyParticle.GetComponentInChildren<ParticleSystem>().Play();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
-        canBeKnockedBack = false;
-        inPosition = false;
-        currentHealth = Health;
         gameObject.transform.parent.gameObject.SetActive(false);
     }
+
 
 
 

@@ -104,7 +104,6 @@ public class ShipControl : MonoBehaviour
                 }
                 initialFire = true;
                 startLFireTimer = true;
-                Debug.Log("fire 2");
 
             }
 

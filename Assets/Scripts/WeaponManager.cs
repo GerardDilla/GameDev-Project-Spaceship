@@ -39,6 +39,7 @@ public class WeaponManager : MonoBehaviour
 
         if (other.tag == "Enemy")
         {
+            Debug.Log("ENEMY");
             EnemyHandler(other);
         }
 
@@ -51,7 +52,7 @@ public class WeaponManager : MonoBehaviour
         {
             if (other.GetComponent<Obstacle>().canBeKnockedBack == true)
             {
-                other.GetComponent<Rigidbody2D>().AddForceAtPosition(collisionEvents[0].intersection * 2 - transform.position, collisionEvents[0].intersection + Vector3.up);
+                other.GetComponent<Rigidbody2D>().AddForceAtPosition(collisionEvents[0].intersection * 2 - transform.position, collisionEvents[0].intersection);
             }
 
         }
@@ -60,7 +61,6 @@ public class WeaponManager : MonoBehaviour
         // Debug.Log(hitEffect);
         if (hitEffect != null)
         {
-            Debug.Log(hitEffect);
             GameObject objectHitParticle = objectPooler.GetPooledObject(hitEffect);
             objectHitParticle.transform.position = collisionEvents[0].intersection;
             objectHitParticle.SetActive(true);
@@ -73,16 +73,16 @@ public class WeaponManager : MonoBehaviour
     {
         if (other.GetComponent<Rigidbody2D>() != null)
         {
-            if (other.GetComponent<Enemy>().canBeKnockedBack == true)
+            if (other.GetComponentInChildren<Enemy>().canBeKnockedBack == true)
             {
                 other.GetComponent<Rigidbody2D>().AddForceAtPosition(collisionEvents[0].intersection * 2 - transform.position, collisionEvents[0].intersection + Vector3.up);
             }
 
         }
 
-        GameObject hitEffect = other.GetComponent<Enemy>().hitEffect;
+        GameObject hitEffect = other.GetComponentInChildren<Enemy>().hitEffect;
         // Debug.Log(hitEffect);
-        other.GetComponent<Enemy>().RegisterDamage(damage);
+        other.GetComponentInChildren<Enemy>().RegisterDamage(damage);
 
 
         // other.GetComponent<Obstacle>().DestroyObstacle();

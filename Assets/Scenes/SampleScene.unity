@@ -1985,6 +1985,7 @@ MonoBehaviour:
   destroyEffect: {fileID: 3255888185933944339, guid: 8ca7f827ed979fd40ac0dbee2eed64e7, type: 3}
   hitEffect: {fileID: 3255888185933944339, guid: 8ca7f827ed979fd40ac0dbee2eed64e7, type: 3}
   canBeKnockedBack: 0
+  ignoreEnemies: 1
 --- !u!1 &1584965327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,7 +2070,7 @@ MonoBehaviour:
   numberPooled: 0
   maxActiveObjects: 0
   randomRotation: 0
-  randomSize: {x: 2, y: 6}
+  randomSize: {x: 2, y: 4}
   spawngaps: 0
 --- !u!1 &1597779527
 GameObject:
@@ -2174,6 +2175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1733652594}
   - component: {fileID: 1733652595}
+  - component: {fileID: 1733652596}
   m_Layer: 0
   m_Name: EnemyArea
   m_TagString: Untagged
@@ -2188,8 +2190,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733652593}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.33, z: 50}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.93, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1672661549}
@@ -2246,6 +2248,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1733652596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733652593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50710e648cd211a44be5745cb64491a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToFollow: {fileID: 1672661549}
 --- !u!1 &1749186661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,10 +2342,10 @@ MonoBehaviour:
   Camera: {fileID: 963194227}
   objPooler: {fileID: 273241741}
   customParent: {fileID: 1672661547}
-  spawnTime: 0.5
-  spawnChance: 1
+  spawnTime: 2
+  spawnChance: 0.3
   numberPooled: 0
-  maxActiveObjects: 5
+  maxActiveObjects: 20
   randomRotation: 0
   randomSize: {x: 1, y: 1}
   spawngaps: 0
@@ -2603,7 +2618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923138592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 14.08, z: 0}
+  m_LocalPosition: {x: 0, y: 14.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 963194228}

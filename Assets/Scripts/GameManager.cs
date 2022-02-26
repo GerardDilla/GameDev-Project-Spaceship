@@ -32,10 +32,6 @@ public class GameManager : MonoBehaviour
         {
             highScore = PlayerPrefs.GetFloat("HighScore");
         }
-        else
-        {
-            Debug.Log("has no key");
-        }
     }
 
     public void GameOver()
@@ -85,6 +81,9 @@ public class GameManager : MonoBehaviour
         {
             foreach (GameObject enemy in enemies)
             {
+                // if(){
+
+                // }
                 enemy.transform.parent.gameObject.SetActive(false);
             }
 
