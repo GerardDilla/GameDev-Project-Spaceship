@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Obstacle
   - Enemy
+  - prop
+  - Buff
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -14,9 +17,9 @@ TagManager:
   - Water
   - UI
   - Obstacle
+  - Enemy
+  - Buffs
   - PostProcessing
-  - 
-  - 
   - 
   - 
   - 

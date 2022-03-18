@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f6146332c79b24f913902452aa3d50, type: 3}
+  m_Name: Hard
+  m_EditorClassIdentifier: 
+  Name: Hard
+  difficultyLevel: 3
+  spawners:
+  - {fileID: 11400000, guid: d599c63f44ef63846a20b9e917366a4e, type: 2}
+  - {fileID: 11400000, guid: 9835dee6eed532d46afdaba31e6e41b1, type: 2}
+  - {fileID: 11400000, guid: 55061eb4ade2c5b49ac84f43c39dcb38, type: 2}
+  - {fileID: 11400000, guid: 3f88aae7f3c56a64e907856f6fa1ecf7, type: 2}
+  - {fileID: 11400000, guid: fae1760a84931d84ab9664568a36d53d, type: 2}
+  - {fileID: 11400000, guid: 7dc86cd41e9588846baefd9309452c00, type: 2}
+  - {fileID: 11400000, guid: 34cbbbf1f15e21d42a421ac8c621c920, type: 2}
+  - {fileID: 11400000, guid: 640d2a790f1e4a34a860e5b4fb1ef3c8, type: 2}

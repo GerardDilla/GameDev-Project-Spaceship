@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8069ef1f2699333469a6d06b98d741ed, type: 3}
+  m_Name: Enemy Normal
+  m_EditorClassIdentifier: 
+  Name: 
+  Health: 40
+  Damage: 5
+  FireRate: 3
+  Speed: 5
+  BehaviorInterval: 5
+  pointsUponDeath: 5
+  rotateToPlayer: 0
+  rotationMultiplier: 0
+  animatorController: {fileID: 9100000, guid: 73b74362d54d7fa46acc303c4f769a78, type: 2}
+  Sprite: {fileID: -1972932625926573473, guid: 1358998546f02ba428ea8039316d02c9, type: 3}
+  Projectile: {fileID: 2927304804569978946, guid: 7d21783df6f6c0743a79c61dbcbb9097, type: 3}
+  possibleDrops: []

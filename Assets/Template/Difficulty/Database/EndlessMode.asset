@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e1e21da9891524abeb35ef5427875b, type: 3}
+  m_Name: EndlessMode
+  m_EditorClassIdentifier: 
+  difficultyDatabase:
+  - Name: Easy
+    Difficulty: 1
+    difficultyPreset:
+    - {fileID: 11400000, guid: 9f5d4f211357ef34f86aeef49205df78, type: 2}
+    bossPreset:
+    - {fileID: 11400000, guid: 8b6a02a6a2429754b9c0d285b2099c02, type: 2}
+  - Name: Medium
+    Difficulty: 2
+    difficultyPreset:
+    - {fileID: 11400000, guid: 91aeeffd7f867aa4481a70eda9b02be5, type: 2}
+    bossPreset:
+    - {fileID: 11400000, guid: 8b6a02a6a2429754b9c0d285b2099c02, type: 2}
+  - Name: Hard
+    Difficulty: 3
+    difficultyPreset:
+    - {fileID: 11400000, guid: 47b25c21f29e5e847828171f30f9eb7c, type: 2}
+    bossPreset:
+    - {fileID: 11400000, guid: 8b6a02a6a2429754b9c0d285b2099c02, type: 2}

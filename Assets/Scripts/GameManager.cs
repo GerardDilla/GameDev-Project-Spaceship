@@ -6,40 +6,119 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+
+    public enum GameState { Menu, InGame, GameOver, Restart };
+    public GameState gameState;
     public GameObject ship;
     private ShipControl shipControl;
-    public GameObject objectGenerator;
+    public DifficultyHandler difficultyHandler;
     public CameraController Camera;
+    public GameObject mainMenu;
     public GameObject health;
-    private Transform healthNumber;
-    public Text scoreUI;
-    public Text highScoreUI;
-
-    public Text gameOver;
+    private GameObject healthNumber;
+    public GameObject scoreUI;
+    public GameObject highScoreUI;
+    public GameObject gameOver;
     public PointTracker pointTracker;
     public float highScore = 0;
     public Vector3 shipStart;
+    public GameObject PlanetMenu;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.DeleteAll();
+        gameState = GameState.Menu;
+        // PlayerPrefs.DeleteAll();
         shipStart = ship.transform.position;
         shipControl = ship.GetComponent<ShipControl>();
-        healthNumber = health.transform.Find("Number");
+        difficultyHandler = GetComponent<DifficultyHandler>();
         gameOver.gameObject.SetActive(false);
         if (PlayerPrefs.HasKey("HighScore"))
         {
             highScore = PlayerPrefs.GetFloat("HighScore");
         }
+        gameOver.gameObject.SetActive(false);
+        ToggleGameObjects(true);
     }
+
+    private void Update()
+    {
+
+        if (gameState == GameState.Menu)
+        {
+            Home();
+        }
+        if (gameState == GameState.InGame)
+        {
+            InGame();
+        }
+        if (gameState == GameState.GameOver)
+        {
+            GameOver();
+        }
+        if (gameState == GameState.Restart)
+        {
+            RestartGame();
+        }
+    }
+    public void ExitToMenu()
+    {
+        returnToDefaults();
+        gameState = GameState.Menu;
+    }
+    public void SetGameState(string stateString)
+    {
+        GameState state = (GameState)System.Enum.Parse(typeof(GameState), stateString);
+        gameState = state;
+    }
+
+    private void Home()
+    {
+        mainMenu.SetActive(true);
+        health.SetActive(false);
+        gameOver.SetActive(false);
+        scoreUI.SetActive(false);
+        highScoreUI.SetActive(false);
+        pointTracker.Tracking = false;
+        shipControl.SetShipState("Idle");
+        difficultyHandler.active = false;
+
+        var highscoretext = GameObject.Find("HighscoreMain").GetComponent<Text>();
+        if (PlayerPrefs.GetFloat("HighScore") != 0)
+        {
+            GameObject.Find("HighscoreMain").SetActive(true);
+            highscoretext.text = "Highscore: " + PlayerPrefs.GetFloat("HighScore");
+        }
+        PlanetMenu.SetActive(true);
+
+    }
+
+    private void InGame()
+    {
+        mainMenu.SetActive(false);
+        health.SetActive(true);
+        gameOver.SetActive(false);
+        scoreUI.SetActive(true);
+        highScoreUI.SetActive(true);
+        pointTracker.Tracking = true;
+        shipControl.SetShipState("Active");
+        difficultyHandler.active = true;
+    }
+
+
 
     public void GameOver()
     {
-        ship.gameObject.SetActive(false);
-        pointTracker.gameObject.SetActive(false);
-        healthNumber.GetComponent<Text>().text = "0";
-        gameOver.gameObject.SetActive(true);
+
+        ToggleGameObjects(false);
+        mainMenu.SetActive(false);
+        health.SetActive(false);
+        gameOver.SetActive(true);
+        scoreUI.SetActive(false);
+        highScoreUI.SetActive(false);
+        health.transform.Find("Number").GetComponent<Text>().text = "0";
+        pointTracker.Tracking = false;
+        shipControl.SetShipState("Idle");
 
     }
     public void RestartGame()
@@ -50,18 +129,13 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator RestartGameCo()
     {
-        ship.gameObject.SetActive(false);
-        healthNumber.GetComponent<Text>().text = "0";
-        gameOver.gameObject.SetActive(false);
+
+        ToggleGameObjects(false);
         yield return new WaitForSeconds(1f);
-        InactivateObjectPooled();
-        shipTransformReset();
-        ResetTallyScore();
-        Camera.CameraReset();
-        pointTracker.gameObject.SetActive(true);
-        shipControl.currentHealth = shipControl.health;
-        healthNumber.GetComponent<Text>().text = "" + (int)shipControl.currentHealth;
-        objectGenerator.SetActive(true);
+        returnToDefaults();
+        ToggleGameObjects(true);
+        gameState = GameState.InGame;
+
     }
 
     private void InactivateObjectPooled()
@@ -73,7 +147,15 @@ public class GameManager : MonoBehaviour
             {
                 obstacle.SetActive(false);
             }
+        }
 
+        GameObject[] props = GameObject.FindGameObjectsWithTag("prop");
+        if (props.Length != 0)
+        {
+            foreach (GameObject prop in props)
+            {
+                prop.SetActive(false);
+            }
         }
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -81,21 +163,11 @@ public class GameManager : MonoBehaviour
         {
             foreach (GameObject enemy in enemies)
             {
-                // if(){
 
-                // }
-                enemy.transform.parent.gameObject.SetActive(false);
+                enemy.gameObject.SetActive(false);
             }
 
         }
-        // if (obstacles.Length != 0)
-        // {
-        //     GameObject[] prop = GameObject.FindGameObjectsWithTag("prop");
-        //     foreach (GameObject obstacle in obstacles)
-        //     {
-        //         obstacle.SetActive(false);
-        //     }
-        // }
     }
 
     private void shipTransformReset()
@@ -112,8 +184,8 @@ public class GameManager : MonoBehaviour
             highScore = points;
             PlayerPrefs.SetFloat("HighScore", Mathf.Round(highScore));
         }
-        scoreUI.text = "Score: " + (int)points;
-        highScoreUI.text = "High Score: " + (int)highScore;
+        scoreUI.GetComponent<Text>().text = "Score: " + (int)points;
+        highScoreUI.GetComponent<Text>().text = "High Score: " + (int)highScore;
     }
 
     public void ResetTallyScore()
@@ -122,6 +194,37 @@ public class GameManager : MonoBehaviour
         pointTracker.lastFramePosition = ship.transform.position;
         pointTracker.transform.position = ship.transform.position;
         // pointTracker.distanceToMove = ship.transform.position.y - pointTracker.lastFramePosition.y;
-        scoreUI.text = "Score: " + (int)pointTracker.points;
+        scoreUI.GetComponent<Text>().text = "Score: " + (int)pointTracker.points;
     }
+
+    public void ResetDifficulty()
+    {
+        difficultyHandler.progress = 0;
+        difficultyHandler.nextThreshold = difficultyHandler.progressThreshold;
+        difficultyHandler.difficultyQueue = 0;
+        pointTracker.progress = 0;
+        foreach (Transform child in difficultyHandler.spawnParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        // difficultyHandler.StartSpawn();
+    }
+
+    private void ToggleGameObjects(bool config = false)
+    {
+        ship.gameObject.SetActive(config);
+        pointTracker.Tracking = config;
+        PlanetMenu.SetActive(config);
+    }
+
+    private void returnToDefaults()
+    {
+        InactivateObjectPooled();
+        shipTransformReset();
+        ResetTallyScore();
+        ResetDifficulty();
+        Camera.CameraReset();
+        difficultyHandler.initialSpawnDone = false;
+    }
+
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30eb030971222dd42842b4ae0a97fb41, type: 3}
+  m_Name: Attack Speed Buff Rare
+  m_EditorClassIdentifier: 
+  Name: 
+  customParentString: 
+  spawnTime: 7
+  spawnChance: 0.03
+  spawnGap: 0
+  numberPooled: 0
+  maxActiveObjects: 1
+  randomRotation: 0
+  randomSize: {x: 0, y: 0}
+  SpawnObject: {fileID: 8829136118940401621, guid: 5e031feff1a84e445a5fb1648555aeed, type: 3}
+  SpawnVariants: []
