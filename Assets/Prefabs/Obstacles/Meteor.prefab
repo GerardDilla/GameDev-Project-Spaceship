@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 927020008}
   - component: {fileID: 6092058421202755835}
   - component: {fileID: 8238673493365677783}
+  - component: {fileID: 7656292808048647641}
   m_Layer: 6
   m_Name: Meteor
   m_TagString: Obstacle
@@ -191,6 +192,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectDestroyer: {fileID: 0}
   customObjectDestroyer: MeteorDeletePoint
+--- !u!114 &7656292808048647641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3090527400461994906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e74f858f8672d4abec12e9bc4cfc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loot: {fileID: 5868250577339317048, guid: 9f3a8856c6721be479e0c94d0695b331, type: 3}
+  Amount: {x: 2, y: 4}
 --- !u!1 &6639163559425678891
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class ObjectSpawnerTemplate : ScriptableObject
     public string customParentString;
     public float spawnTime;
     public float spawnChance;
+    public int spawnBatch;
     public float spawnGap;
     public int numberPooled;
     public int maxActiveObjects;

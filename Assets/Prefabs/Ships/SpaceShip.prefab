@@ -4920,7 +4920,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f56785c324840894fb18925b10fedd6f, type: 2}
+  - {fileID: 2100000, guid: fd24150b2d8e88746be686abbaf03a22, type: 2}
   - {fileID: 2100000, guid: fd24150b2d8e88746be686abbaf03a22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -10151,6 +10151,7 @@ GameObject:
   - component: {fileID: 7454964791576080195}
   - component: {fileID: 7454964791576080192}
   - component: {fileID: 6582189039451845617}
+  - component: {fileID: 1965033016}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Player
@@ -10322,6 +10323,7 @@ MonoBehaviour:
   destroyEffect: {fileID: 7422402702615373984, guid: 12c2f7cb42f45534d9201876fad612b2, type: 3}
   healthUI: {fileID: 0}
   shieldBuffed: 0
+  attackBuffed: 0
   shieldEffect: {fileID: 9020930482363482378, guid: 2b7e2a959f7b16742a3e8535e80924d1, type: 3}
 --- !u!114 &7454964791576080192
 MonoBehaviour:
@@ -10396,6 +10398,19 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1965033016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7454964791576080199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f75c2fcd684f346a5fde7510e67a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollectEffect: {fileID: 4370563155444748050, guid: 410054878c2dcd143a2789904f6cfc08, type: 3}
 --- !u!1001 &7454964790328843615
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2280053618505168758}
   - component: {fileID: 125053738053886316}
   - component: {fileID: 8327674131947839101}
+  - component: {fileID: 4360949652561023780}
   m_Layer: 7
   m_Name: Enemy Normal
   m_TagString: Enemy
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e554e299179f844b7e41ed0e9333e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &2280053618505168758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +237,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnhitMaterial: {fileID: 2100000, guid: a1ce9aacda09c29429f64d9a0579c320, type: 2}
+--- !u!114 &4360949652561023780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2280053618505168756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e74f858f8672d4abec12e9bc4cfc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loot: {fileID: 5868250577339317048, guid: 9f3a8856c6721be479e0c94d0695b331, type: 3}
+  Amount: {x: 0, y: 3}
 --- !u!1 &2280053620200326028
 GameObject:
   m_ObjectHideFlags: 0

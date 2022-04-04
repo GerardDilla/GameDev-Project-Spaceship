@@ -12,6 +12,7 @@ public class ObjectGenerator : MonoBehaviour
     private string customParentString;
     private float spawnTime;
     private float spawnChance;
+    private int spawnBatch;
     private float spawnGap;
     private int numberPooled;
     private int maxActiveObjects;
@@ -33,6 +34,7 @@ public class ObjectGenerator : MonoBehaviour
         customParentString = spawnerConfig.customParentString;
         spawnTime = spawnerConfig.spawnTime;
         spawnChance = spawnerConfig.spawnChance;
+        spawnBatch = spawnerConfig.spawnBatch;
         spawnGap = spawnerConfig.spawnGap;
         numberPooled = spawnerConfig.numberPooled;
         maxActiveObjects = spawnerConfig.maxActiveObjects;
@@ -116,8 +118,27 @@ public class ObjectGenerator : MonoBehaviour
     }
     private void Spawn()
     {
+        if (spawnBatch == 0)
+        {
+            PoolObject();
+        }
+        else
+        {
+            var direction = generationPoint.position.normalized;
+            for (int i = 0; i <= spawnBatch; i++)
+            {
+                direction.x = direction.x + ((Random.Range(0, 2) * 2 - 1) * 0.7f);
+                direction.y = direction.y + ((Random.Range(0, 2) * 2 - 1) * 0.7f);
+                PoolObject(direction);
+            }
+        }
+
+    }
+
+    private void PoolObject(Vector3 genOffset = default(Vector3))
+    {
         GameObject newObject = objPooler.GetPooledObject(SpawnObject, customParent, spawnerConfig.Name);
-        newObject.transform.position = generationPoint.position;
+        newObject.transform.position = generationPoint.position + genOffset;
         newObject.name = SpawnObject.name;
 
         if (randomRotation == true)
@@ -132,18 +153,15 @@ public class ObjectGenerator : MonoBehaviour
             }
 
         }
-
         if (randomSize != Vector2.zero)
         {
             newObject.transform.localScale = Vector2.one * Random.Range(randomSize.x, randomSize.y);
 
         }
-
         if (newObject.transform.position != generationPoint.position)
         {
-            Debug.Log("Not Match" + newObject.transform.position + " - " + generationPoint.position);
+            // Debug.Log("Not Match" + newObject.transform.position + " - " + generationPoint.position);
         }
-
         newObject.SetActive(true);
     }
     private void SetCustomParent()
@@ -193,7 +211,7 @@ public class ObjectGenerator : MonoBehaviour
             Transform child = parent.transform.GetChild(i);
             if (parent.name == "EnemyFrame")
             {
-                Debug.Log(child.gameObject.name + ":" + SpawnObject.name);
+                // Debug.Log(child.gameObject.name + ":" + SpawnObject.name);
             }
             if (child.gameObject.name == SpawnObject.name && child.gameObject.activeInHierarchy)
             {

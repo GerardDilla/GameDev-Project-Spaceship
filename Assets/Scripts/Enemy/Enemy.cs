@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public Camera mainCamera;
     private HitEffect hitEffect;
     private PointTracker pointTracker;
+    private LootGenerator lootGenerator;
 
     private void OnEnable()
     {
@@ -81,6 +82,8 @@ public class Enemy : MonoBehaviour
         // Get Point tracker
         pointTracker = GameObject.Find("PointCounter").GetComponent<PointTracker>();
 
+        lootGenerator = GetComponent<LootGenerator>();
+
         // Set state default
         enemyState = EnemyState.Spawning;
 
@@ -96,11 +99,19 @@ public class Enemy : MonoBehaviour
 
     private void Destroy()
     {
+        LootHandler();
         DestroyedEffect();
         gameObject.SetActive(false);
 
         // Credit Points
         if (pointTracker != null) pointTracker.AddPoints(pointsUponDeath);
+    }
+
+    private void LootHandler()
+    {
+        if (lootGenerator == null) return;
+        lootGenerator.DropLoot();
+
     }
 
     private void DestroyedEffect()

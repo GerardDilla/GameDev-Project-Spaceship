@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Planet
   customParentString: Planets
-  spawnTime: 10
-  spawnChance: 0.3
+  spawnTime: 5
+  spawnChance: 1
   spawnGap: 0
   numberPooled: 0
   maxActiveObjects: 1
   randomRotation: 0
-  randomSize: {x: 0, y: 0}
+  randomSize: {x: 3, y: 5}
   SpawnObject: {fileID: 0}
   SpawnVariants:
   - {fileID: 1668573945306020784, guid: 633a01e439bdd184c8b7371586b11919, type: 3}

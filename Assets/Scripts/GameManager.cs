@@ -6,44 +6,55 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-
-    public enum GameState { Menu, InGame, GameOver, Restart };
+    [Header("- Config")]
     public GameState gameState;
+    public enum GameState { Menu, InGame, GameOver, Restart };
+    public List<string> resetableTags;
+    private float highScore = 0;
+    private Vector3 shipStart;
+
+    [Header("- Object References")]
     public GameObject ship;
     private ShipControl shipControl;
-    public DifficultyHandler difficultyHandler;
-    public CameraController Camera;
     public GameObject mainMenu;
     public GameObject health;
     private GameObject healthNumber;
     public GameObject scoreUI;
     public GameObject highScoreUI;
     public GameObject gameOver;
+    public GameObject CoinsUI;
+    private DifficultyHandler difficultyHandler;
+    public CameraController Camera;
     public PointTracker pointTracker;
-    public float highScore = 0;
-    public Vector3 shipStart;
     public GameObject PlanetMenu;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        // Sets Default State of Game
         gameState = GameState.Menu;
-        // PlayerPrefs.DeleteAll();
+
+        // Gets Default position of Ship
         shipStart = ship.transform.position;
+
+        // Get Object References
         shipControl = ship.GetComponent<ShipControl>();
         difficultyHandler = GetComponent<DifficultyHandler>();
+
+        // Hides GameOver Ui
         gameOver.gameObject.SetActive(false);
+
+        // Get Current Score and displays to Ui
         if (PlayerPrefs.HasKey("HighScore"))
         {
             highScore = PlayerPrefs.GetFloat("HighScore");
         }
-        gameOver.gameObject.SetActive(false);
         ToggleGameObjects(true);
     }
 
     private void Update()
     {
-
         if (gameState == GameState.Menu)
         {
             Home();
@@ -60,6 +71,7 @@ public class GameManager : MonoBehaviour
         {
             RestartGame();
         }
+        CoinsUI.GetComponent<Text>().text = "Coins: " + (int)PlayerPrefs.GetInt("Coin");
     }
     public void ExitToMenu()
     {
@@ -78,6 +90,7 @@ public class GameManager : MonoBehaviour
         health.SetActive(false);
         gameOver.SetActive(false);
         scoreUI.SetActive(false);
+        CoinsUI.SetActive(false);
         highScoreUI.SetActive(false);
         pointTracker.Tracking = false;
         shipControl.SetShipState("Idle");
@@ -99,6 +112,7 @@ public class GameManager : MonoBehaviour
         health.SetActive(true);
         gameOver.SetActive(false);
         scoreUI.SetActive(true);
+        CoinsUI.SetActive(true);
         highScoreUI.SetActive(true);
         pointTracker.Tracking = true;
         shipControl.SetShipState("Active");
@@ -115,6 +129,7 @@ public class GameManager : MonoBehaviour
         health.SetActive(false);
         gameOver.SetActive(true);
         scoreUI.SetActive(false);
+        CoinsUI.SetActive(false);
         highScoreUI.SetActive(false);
         health.transform.Find("Number").GetComponent<Text>().text = "0";
         pointTracker.Tracking = false;
@@ -140,33 +155,16 @@ public class GameManager : MonoBehaviour
 
     private void InactivateObjectPooled()
     {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-        if (obstacles.Length != 0)
+        foreach (string tags in resetableTags)
         {
-            foreach (GameObject obstacle in obstacles)
+            GameObject[] obj = GameObject.FindGameObjectsWithTag(tags);
+            if (obj.Length != 0)
             {
-                obstacle.SetActive(false);
+                foreach (GameObject obstacle in obj)
+                {
+                    obstacle.SetActive(false);
+                }
             }
-        }
-
-        GameObject[] props = GameObject.FindGameObjectsWithTag("prop");
-        if (props.Length != 0)
-        {
-            foreach (GameObject prop in props)
-            {
-                prop.SetActive(false);
-            }
-        }
-
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length != 0)
-        {
-            foreach (GameObject enemy in enemies)
-            {
-
-                enemy.gameObject.SetActive(false);
-            }
-
         }
     }
 

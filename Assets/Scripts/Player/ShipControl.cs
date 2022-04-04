@@ -88,7 +88,6 @@ public class ShipControl : MonoBehaviour
         attackBuffed = false;
         shieldBuffed = false;
     }
-
     void Update()
     {
         if (shipState == ShipState.Idle)
@@ -300,8 +299,10 @@ public class ShipControl : MonoBehaviour
         ShipState state = (ShipState)System.Enum.Parse(typeof(ShipState), stateString);
         shipState = state;
     }
+    public void ResetState()
+    {
 
-
+    }
     // void OnDrawGizmos()
     // {
     //     Gizmos.color = Color.red;

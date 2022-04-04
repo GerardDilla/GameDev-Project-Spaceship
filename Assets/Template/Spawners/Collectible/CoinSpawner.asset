@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30eb030971222dd42842b4ae0a97fb41, type: 3}
-  m_Name: Asteroid 1
+  m_Name: CoinSpawner
   m_EditorClassIdentifier: 
-  Name: Asteroid
+  Name: Coin
   customParentString: 
-  spawnTime: 0.4
-  spawnChance: 1
-  spawnBatch: 0
-  spawnGap: 1
+  spawnTime: 7
+  spawnChance: 0.3
+  spawnBatch: 10
+  spawnGap: 0
   numberPooled: 0
-  maxActiveObjects: 10
-  randomRotation: 1
-  randomSize: {x: 4, y: 6}
-  SpawnObject: {fileID: 1238447381106619544, guid: 76325c13c2aef7847a22b7d3a6a0127f, type: 3}
+  maxActiveObjects: 0
+  randomRotation: 0
+  randomSize: {x: 0, y: 0}
+  SpawnObject: {fileID: 5868250577339317048, guid: 9f3a8856c6721be479e0c94d0695b331, type: 3}
   SpawnVariants: []

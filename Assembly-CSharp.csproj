@@ -44,6 +44,7 @@
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyProjectile.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\World_Bar.cs" />
+     <Compile Include="Assets\Scripts\Props\LootGenerator.cs" />
      <Compile Include="Assets\Scripts\Object Pooling\ObjectGenerator.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionUpdater.cs" />
      <Compile Include="Assets\Scripts\Player\ShipControl.cs" />
@@ -60,9 +61,11 @@
      <Compile Include="Assets\Scripts\Scriptable Objects\Enemy\EnemyClass.cs" />
      <Compile Include="Assets\Scripts\Object Pooling\ObjectDestroyer.cs" />
      <Compile Include="Assets\Scripts\Scene\PointTracker.cs" />
+     <Compile Include="Assets\Scripts\Scriptable Objects\Coins\CollectibleTemplate.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyBehavior.cs" />
      <Compile Include="Assets\Scripts\Object Pooling\ObjectFollower.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_TextComplex.cs" />
+     <Compile Include="Assets\Scripts\Scriptable Objects\Difficulty\DifficultyDatabase.cs" />
      <Compile Include="Assets\Scripts\Object Pooling\ObjectPooler.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\Button_Sprite.cs" />
      <Compile Include="Assets\CodeMonkey\Assets.cs" />
@@ -76,13 +79,15 @@
      <Compile Include="Assets\Scripts\Props\Obstacle.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
      <Compile Include="Assets\Scripts\Props\BGParallax.cs" />
+     <Compile Include="Assets\Scripts\Props\Collectible.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\ComponentActions.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_BarMultiple.cs" />
      <Compile Include="Assets\Scripts\Props\HitEffect.cs" />
      <Compile Include="Assets\Scripts\Scriptable Objects\Spawner\ObjectSpawnerTemplate.cs" />
      <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
-     <Compile Include="Assets\Scripts\Scriptable Objects\Difficulty\DifficultyDatabase.cs" />
+     <Compile Include="Assets\Scripts\Object Pooling\LootPooler.cs" />
+     <Compile Include="Assets\Scripts\Player\LootCollector.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

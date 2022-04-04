@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2472486229689333676}
   - component: {fileID: -1900426610079115783}
   - component: {fileID: 6201014401112823458}
+  - component: {fileID: 5745786052625635454}
   m_Layer: 6
   m_Name: Asteroid
   m_TagString: Obstacle
@@ -190,7 +191,6 @@ MonoBehaviour:
   canBeKnockedBack: 1
   baseDamageOnSize: 0
   includeDamage: []
-  gameManager: {fileID: 0}
   destroyEffect: {fileID: 7422402702615373984, guid: 12c2f7cb42f45534d9201876fad612b2, type: 3}
   hitEffect: {fileID: 8672960274861524399, guid: e4f4e9991cd6bbc40aaba4d8b51eab48, type: 3}
 --- !u!331 &-1900426610079115783
@@ -269,6 +269,20 @@ MonoBehaviour:
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
   m_InstanceId: 105248
+--- !u!114 &5745786052625635454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238447381106619544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e74f858f8672d4abec12e9bc4cfc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loot: {fileID: 5868250577339317048, guid: 9f3a8856c6721be479e0c94d0695b331, type: 3}
+  Amount: {x: 1, y: 2}
 --- !u!1 &2515903188975799817
 GameObject:
   m_ObjectHideFlags: 0

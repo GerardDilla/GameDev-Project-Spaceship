@@ -23,15 +23,17 @@ public class Obstacle : MonoBehaviour
     public GameObject hitEffect;
     private float collisionDamageTimer = 2.0f;
     private float currentCollisionDamageTimer;
+    private LootGenerator lootGenerator;
+
     private void OnEnable()
     {
         currentHealth = Health;
         currentCollisionDamageTimer = 0f;
         objectPooler = GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>();
+        lootGenerator = GetComponent<LootGenerator>();
     }
     void Start()
     {
-
         if (hitEffect)
         {
             objectPooler.InstantiateObjects(hitEffect, 0);
@@ -44,9 +46,7 @@ public class Obstacle : MonoBehaviour
         {
             damageInflicted = damageInflicted + (transform.localScale.x / 2);
         }
-
     }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
 
@@ -64,9 +64,6 @@ public class Obstacle : MonoBehaviour
                 obstacle.Destroy();
             }
         }
-
-
-
     }
     private void OnCollisionStay2D(Collision2D other)
     {
@@ -123,6 +120,7 @@ public class Obstacle : MonoBehaviour
         objectDestroyParticle.transform.position = transform.position;
         objectDestroyParticle.SetActive(true);
         objectDestroyParticle.GetComponentInChildren<ParticleSystem>().Play();
+        LootHandler();
         gameObject.SetActive(false);
     }
 
@@ -139,6 +137,12 @@ public class Obstacle : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = fromEnemyDifference * pushForce;
             // objectCollided.GetComponent<Rigidbody2D>().AddForce(difference * pushForce);
         }
+    }
+    private void LootHandler()
+    {
+        if (lootGenerator == null) return;
+        lootGenerator.DropLoot();
+
     }
 
     // void OnDrawGizmos()

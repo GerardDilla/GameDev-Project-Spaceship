@@ -9,6 +9,7 @@ TagManager:
   - prop
   - Buff
   - Projectile
+  - Collectible
   layers:
   - Default
   - TransparentFX
